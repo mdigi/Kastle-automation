@@ -1,13 +1,14 @@
 import telnetlib
 import time
 
-def do(actions, t=.4):
+def do(actions, t=.4, disp_txt=1):
     if type(actions) == str:
         actions = [actions]
     for action in actions:
         tn.write(action + '\n')
         time.sleep(t)
-        print tn.read_very_eager()
+        if disp_txt:
+            print tn.read_very_eager()
 
 tn = telnetlib.Telnet('figgis.agency')
 time.sleep(.5)
@@ -173,8 +174,11 @@ do('take pen')
 # go west 2x, south 2x, west 2x to location 47 & get whiskey stones
 do(list('wwssww') + ['take whiskey stones'])
 
-# go south 2x, east 4x, north 2x, east 4x, north to location 49 & get candy wrapper
-do(list('sseeeenneeeen') + ['take wrapper'])
+# go south 2x & get hole
+do(list('ss') + ['take hole'])
+
+# go east 4x, north 2x, east 4x, north to location 49 & get candy wrapper
+do(list('eeeenneeeen') + ['take wrapper'])
 
 # go north to location 50 & get foil swan
 do(['n', 'pick swan'])
@@ -185,8 +189,18 @@ do(list('sswwnn') + ['take knife'])
 # go north 2x, east 4x, south 2x to location 53 & get knitting needle
 do(list('nneeeess') + ['take needle'])
 
-# go north 2x, east 4x, south to location 52
-do(list('nneeees'))
+# go north 2x, east 4x, south 2x to location 54 & get spatula, hat
+do(list('nneeeess') + ['take spatula', 'take hat'])
+
+# go north 2x, west 2x, south 6x, east 2x to location 55 & get bratwurst
+do(list('nnww' + 's'*6 + 'ee') + ['take bratwurst'])
+
+# go west 2x & take window
+do(list('ww') + ['take window'])
+
+# go north 6x, west 6x, south 4x, west 2x, souith 2x, west 4x, north 2x,
+# east 2x, north 2x,  east 2x, north 4x
+do(list('n'*6 + 'w'*6 + 'sssswwsswwwwnneenneennnn'))
 
 tn.interact()
 # # tn.close()
