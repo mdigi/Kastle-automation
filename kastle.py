@@ -174,10 +174,19 @@ do('take pen')
 do(list('wwssww') + ['take whiskey stones'])
 
 # go south 2x, east 4x, north 2x, east 4x, north to location 49 & get candy wrapper
-do(list('sseeeenneeee') + ['take wrapper'])
+do(list('sseeeenneeeen') + ['take wrapper'])
 
 # go north to location 50 & get foil swan
 do(['n', 'pick swan'])
+
+# go south 2x, west 2x, north 2x to location 48 & get knife
+do(list('sswwnn') + ['take knife'])
+
+# go north 2x, east 4x, south 2x to location 53 & get knitting needle
+do(list('nneeeess') + ['take needle'])
+
+# go north 2x, east 4x, south to location 52
+do(list('nneeees'))
 
 tn.interact()
 # # tn.close()

@@ -48,7 +48,7 @@ do(['e']*5 + ['take arm'])
 do(['s']*2 + ['w']*2 + ['s']*2 + ['e']*4 + ['s']*2 + ['e']*2 + ['n']*2 +
    ['e']*2 + ['n']*2 + ['e']*2 + ['s']*2 + ['e']*2 + ['s']*6)
 
-print 'kriger is at the wooden device, type "use device" when other krieger' +
+print 'kriger is at the wooden device, type "use device" when other krieger' + \
       ' is ready to go through the door'
 
 tn.interact()
