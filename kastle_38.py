@@ -31,7 +31,6 @@ do(['use key on padlock'], t=2, disp_txt=1)
 # east 2x, north 2x, east 2x, south 2x, east 2x, south 6x
 do(list('eeeeesswwsseeeesseenneenneessee' + 's'*7), t=.3, disp_txt=1)
 
-print tn.read_very_eager()
 print 'At wooden door'
 x = raw_input('press enter when other krieger clone opens up door')
 
@@ -44,7 +43,6 @@ do(['take card'], t=.3, disp_txt=1)
 # south 2x, east 2x to door under 26
 do(list('neenneenneesseessee'), t=.3, disp_txt=1)
 
-print tn.read_very_eager()
 print 'At wooden door'
 x = raw_input('press enter when other krieger clone opens up door')
 
@@ -56,8 +54,7 @@ do(list('n'*8 + 'wwnnwwsswwsswwnnwwssww' + 's'*6), t=.3)
 do('use card on door', t=1, disp_txt=1)
 
 # go west 5x, north 10x, east 2x, south 2x
-do(list('w'*5 + 'n'*10 + 'eess'))
+do(list('w'*5 + 'n'*10 + 'eess'), disp_txt=1)
 
-print tn.read_very_eager()
 print 'at location 38'
 tn.interact()
