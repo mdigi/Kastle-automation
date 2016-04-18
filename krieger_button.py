@@ -9,7 +9,7 @@ import telnetlib
 import time
 from do import do
        
-class krieger_button:        
+class Krieger_Button:        
     '''
     Create a Krieger that will be at location 38, 40, or 42 to push button
     type is 38, 40, or 42
@@ -37,6 +37,7 @@ class krieger_button:
         # east 2x, north 2x, east 2x, south 2x, east 2x, south 6x
         do(self.tn, list('eeeeesswwsseeeesseenneenneessee' + 's'*7), t=.3, disp_txt=1)
 
+        # go into cave
         print 'At wooden door'
         krieger_wood.open_door()
         time.sleep(3)
@@ -50,6 +51,8 @@ class krieger_button:
         # south 2x, east 2x to door under 26
         do(self.tn, list('neenneenneesseessee'), t=.3, disp_txt=1)
 
+        # leave cave, don't need to ask other krieger to open door as commands
+        # should be fast enough that the door should still be open
         print 'At wooden door'
 
         # go north 8x, west 2x, north 2x, west 2x, south 2x, west 2x, south 2x, west 2x,

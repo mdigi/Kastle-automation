@@ -9,7 +9,7 @@ import telnetlib
 import time
 from do import do
        
-class krieger_wood_device:       
+class Krieger_Wood_Device:       
     'Create a Krieger that goes to location 25 on the map and is ready to use device'
     def __init__(self):       
         self.tn = telnetlib.Telnet('figgis.agency')
