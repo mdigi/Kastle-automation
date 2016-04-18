@@ -8,18 +8,16 @@
 import telnetlib
 import time
 from do import do
+from create_krieger import Krieger
 
-class Krieger_Wood_Device:
+class Krieger_Wood_Device(Krieger):
     'Create a Krieger that goes to location 25 on the map and is ready to use device'
     def __init__(self):
-        self.tn = telnetlib.Telnet('figgis.agency')
-        time.sleep(.5)
+        Krieger.__init__(self, krieger_type='wood')
+        self.go_to_device()
 
-        self.tn.write('\n')
-        print self.tn.read_very_eager()
-        time.sleep(8)
-
-        # take stick go east, go north 3x to location 4, get key, move south back to
+    def go_to_device(self):
+        #take stick go east, go north 3x to location 4, get key, move south back to
         # location 3, go east 5x
         self.command(['take stick'] + list('ennn') + ['take key', 's'] + ['e']*5)
 
@@ -32,26 +30,3 @@ class Krieger_Wood_Device:
         self.command(list('eeeeesswwsseeeesseenneenneessee' + 's'*6))
 
         print 'kriger is at the wooden device, ready to turn the damn wheel'
-
-    def check(self):
-        'Press return and print out to console to check game stats'
-        self.command('', t=.3, disp_txt=1)
-
-    def command(self, actions, t=0, disp_txt=0):
-        'Use do function'
-        do(self.tn, actions, t, disp_txt)
-
-    def interact(self):
-        'Enter the telnet session'
-        self.tn.interact()
-
-    def open_door(self):
-        'Tell Krieger to use the wooden device and open the cave door'
-        self.command('use device\n', t=.3, disp_txt=1)
-
-    def quit(self):
-        self.tn.write('quit\n')
-        time.sleep(.3)
-        self.tn.write('exit\n')
-
-# tn.close()
