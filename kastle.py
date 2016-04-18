@@ -1,7 +1,7 @@
 import telnetlib
 import time
 
-def do(actions, t=.4, disp_txt=1):
+def do(actions, t=.3, disp_txt=0):
     if type(actions) == str:
         actions = [actions]
     for action in actions:
@@ -20,8 +20,9 @@ time.sleep(8)
 # take stick
 do('take stick')
 
-# move east, north, north to location 3, get diskette and chainsaw
-do(list('enn') + ['take diskette', 'take chainsaw'])
+# move east, north 2x to location 3, get diskette and chainsaw
+do(list('enn'))
+do(['take diskette', 'take chainsaw'])
 
 # go north to location 4, get gas & key, move south back to location 3
 do(['n', 'take gas', 'take key', 's'])
@@ -30,7 +31,8 @@ do(['n', 'take gas', 'take key', 's'])
 do('use gas on chainsaw')
 
 # go east 4x then north to location 6, get briefcase & muffin
-do(['e']*4 + ['n', 'take briefcase', 'open briefcase'])
+do(['e']*4)
+do(['n', 'take briefcase', 'open briefcase'])
 
 # move south then east to location 5 & use key on padlock
 # wait 2 seconds for text to load
@@ -38,16 +40,20 @@ do(['s', 'e'])
 do('use key on padlock', 2)
 
 # move east 5x to location 34 & get robot arm
-do(list('e'*5) + ['take arm'])
+do(list('e'*5))
+do(['take arm'])
 
 # go south 2x, east 2x, north 2x, east 2x, north to location 29 & get bowling ball
-do(list('sseenneen') + ['take ball'])
+do(list('sseenneen'))
+do(['take ball'])
 
 # go south, east 4x, north to location 31 & get mare's leg, dry ice
-do(list('s' + 'e'*4) + ['n', 'take leg', 'take ice'])
+do(list('s' + 'e'*4))
+do(['n', 'take leg', 'take ice'])
 
 # go south, east 2x to location 32, & take poster
-do(list('see') + ['take poster'])
+do(list('see'))
+do(['take poster'])
 
 # go south to location 33 & take rocks
 do(['s', 'take rocks'])
@@ -56,7 +62,8 @@ do(['s', 'take rocks'])
 do(list('n' + 'w'*8 + 'sswwww') + ['take tooth'])
 
 # go south 2x, east 2x, south to 18, get crumbs
-do(list('ssees') + ['take crumbs'])
+do(list('ssees'))
+do(['take crumbs'])
 
 # go south to location 13 get crumpled paper
 do(['s', 'take paper'])
@@ -65,16 +72,19 @@ do(['s', 'take paper'])
 do(list('ww') + ['take thermos'])
 
 # go south 4x, east 2x, north 2x, east to location 15 & get weekly spyglass
-do(list('s'*4 + 'eenne') + ['take spyglass'])
+do(list('s'*4 + 'eenne'))
+do(['take spyglass'])
 
 # go east to location 16 & get fish
 do(['e', 'take fish'])
 
 # go west 2x, south 2x, west 2x, south 4x, west 2x, & get archer paperback
-do(list('wwssww' + 's'*4 + 'ww') + ['take paperback'])
+do(list('wwssww' + 's'*4 + 'ww'))
+do(['take paperback'])
 
 # go east 2x, north 4x, west 2x, north to location 10 & get garrote
-do(list('eennnnwwn') + ['take garrote'])
+do(list('eennnnwwn'))
+do(['take garrote'])
 
 # go north to location 9 & get glue bottle
 do(['n', 'take bottle'])
@@ -84,31 +94,37 @@ do(['w', 'w', 'take torch'])
 
 # go east 2x, south 2x, east 2x, north 4x, east 2x, north 2x, east 2x, south 2x,
 # east to location 19 & get hamburger
-do(list('eesseennnneenneesse') +  ['take hamburger'])
+do(list('eesseennnneenneesse'))
+do(['take hamburger'])
 
 # go east to location 20, open glove compartment & get manual, & bottle cap
 do(['e', 'open glove compartment', 'pickup manual', 'take cap'])
 
 # go north 2x, east 2x, north 2x to location 23 & get cesta
-do(list('nneenn') + ['take cesta'])
+do(list('nneenn'))
+do(['take cesta'])
 
 # go east 2x, south 2x, east 2x, south 4x to location 24 & get stack of flyers
-do(list('eesseessss') + ['take flyers'])
+do(list('eesseessss'))
+do(['take flyers'])
 
 # go south 3x to location 26 where the door is located
 do(list('sss'))
 
+print tn.read_very_eager()
 print 'At wooden door'
 x = raw_input('press enter when other krieger clone opens up door')
 
 # go south, west 2x, north 2x, west 2x, north 2x, west 2x, south 2x, west 2x,
 # south 2x, west 2x, south to location 43 & get keycard
-do(list('swwnnwwnnwwsswwsswws') + ['take card'])
+do(list('swwnnwwnnwwsswwsswws'))
+do(['take card'])
 
 # go north, east 2x, north 2x, east 2x, north 2x, east 2x, south 2x, east 2x,
 # south 2x, east 2x to door under 26
 do(list('neenneenneesseessee'))
 
+print tn.read_very_eager()
 print 'At wooden door'
 x = raw_input('press enter when other krieger clone opens up door')
 
@@ -120,7 +136,25 @@ do(list('n'*8 + 'wwnnwwsswwsswwnnwwssww' + 's'*6))
 do('use card on door', 1)
 
 # go west 5x, south 2x, east 2x to location 42 & get hand truck
-do(list('w'*5 + 'ssee') + ['take hand truck'])
+do(list('w'*5 + 'ssee'))
+do(['take hand truck', 'take data tape'])
+
+if 0:
+    # this code is for using getting the computer back to location 42 to use
+    # the data tape
+    # go to location 21 & haul the computer back to 42
+    do(list('wwnn' + 'e'*6 + 'n'*6 + 'eenneess' + 'e'*6 + 'ss'))
+    do('take computer')
+
+    # go back to location 42
+    do(list('nn' + 'w'*6 + 'nnwwssww' + 's'*6))
+    do('use card on door', 1)
+    do(list('w'*5 + 'ssee'))
+
+    # get data tape
+    do(['use data tape on computer'])
+
+    tn.interact()
 
 # go west 2x, north 10x, west to location 39 & get slingshot
 do(list('ww' + 'n'*10 + 'w') + ['take slingshot'])
@@ -152,6 +186,7 @@ do('use beer bottle on water')
 # to location 26 the wooden door
 do(list('wwsswwnnnneenneesseenneenneessee' + 's'*7))
 
+print tn.read_very_eager()
 print 'At wooden door'
 x = raw_input('press enter when other krieger clone opens up door')
 
@@ -198,9 +233,13 @@ do(list('nnww' + 's'*6 + 'ee') + ['take bratwurst'])
 # go west 2x & take window
 do(list('ww') + ['take window'])
 
-# go north 6x, west 6x, south 4x, west 2x, souith 2x, west 4x, north 2x,
-# east 2x, north 2x,  east 2x, north 4x
-do(list('n'*6 + 'w'*6 + 'sssswwsswwwwnneenneennnn'))
+# # go north 6x, west 6x, south 4x, west 2x, souith 2x, west 4x, north 2x,
+# # east 2x, north 2x,  east 2x, north 4x
+# do(list('n'*6 + 'w'*6 + 'sssswwsswwwwnneenneennnn'))
 
+# go near robot
+do(list('n'*6 + 'wwss'))
+
+print tn.read_very_eager()
 tn.interact()
 # # tn.close()
