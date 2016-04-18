@@ -12,7 +12,7 @@ from do import do
 class Krieger:
     'Create a Krieger'
     def __init__(self, krieger_type=''):
-        self.type = krieger_type
+        self.type = str(krieger_type)
         self.tn = telnetlib.Telnet('figgis.agency')
         time.sleep(.5)
 
@@ -31,13 +31,6 @@ class Krieger:
     def interact(self):
         'Enter the telnet session'
         self.tn.interact()
-
-    def open_door(self):
-        if self.type == 'door':
-            'Tell Krieger to use the wooden device and open the cave door'
-            self.command('use device\n', t=.3, disp_txt=1)
-        else:
-            print "I'm not at the wooden device"
 
     def quit(self):
         self.tn.write('quit\n')

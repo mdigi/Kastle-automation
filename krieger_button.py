@@ -8,23 +8,21 @@
 import telnetlib
 import time
 from do import do
+from create_krieger import Krieger
 
-class Krieger_Button:
+class Krieger_Button(Krieger):
     '''
     Create a Krieger that will be at location 38, 40, or 42 to push button
     type is 38, 40, or 42
     krieger_wood is the krieger object used to turn the wheel at location 25
     '''
-    def __init__(self, type, krieger_wood):
-        self.type = str(type)
+    def __init__(self, krieger_type, krieger_wood):
+        Krieger.__init__(self, krieger_type)
+        self.krieger_wood = krieger_wood
+        self.go_to_button(self.type)
 
-        self.tn = telnetlib.Telnet('figgis.agency')
-        time.sleep(.5)
-
-        self.tn.write('\n')
-        print self.tn.read_very_eager()
-        time.sleep(8)
-
+    def go_to_button(self, location):
+        'Go to button location'
         # take stick go east, go north 3x to location 4, get key, move south back to
         # location 3, go east 5x
         self.command(['take stick'] + list('ennn') + ['take key', 's'] + ['e']*5)
@@ -39,7 +37,7 @@ class Krieger_Button:
 
         # go into cave
         print 'At wooden door'
-        krieger_wood.open_door()
+        self.krieger_wood.open_door()
         time.sleep(3)
 
         # go south, west 2x, north 2x, west 2x, north 2x, west 2x, south 2x, west 2x,
@@ -64,41 +62,23 @@ class Krieger_Button:
 
         if self.type == '38':
             # go west 5x, north 10x, east 2x, south 2x
-            self.command(list('w'*5 + 'n'*10 + 'eess'), disp_txt=1)
+            self.command(list('w'*5 + 'n'*10 + 'eess'), t=.3, disp_txt=1)
 
             print 'at location 38'
 
         if self.type == '40':
             # go west 5x, north 8x, west 2x, south 2x
-            self.command(list('w'*5 + 'n'*8 + 'wwss'), disp_txt=1)
+            self.command(list('w'*5 + 'n'*8 + 'wwss'), t=.3, disp_txt=1)
 
             print 'at location 40'
 
         if self.type == '42':
             # go west 5x, south 2x, east 2x
-            self.command(list('w'*5 + 'ssee'), disp_txt=1)
+            self.command(list('w'*5 + 'ssee'), t=.3, disp_txt=1)
 
             print 'at location 42'
-
-    def check(self):
-        'Press return and print out to console to check game stats'
-        self.command('', t=.3, disp_txt=1)
-
-    def command(self, actions, t=0, disp_txt=0):
-        'Use do function'
-        do(self.tn, actions, t, disp_txt)
-
-    def interact(self):
-        'Enter the telnet session'
-        self.tn.interact()
 
     def push_button(self):
         'Tell Krieger to push the button on the console'
         self.command('push button', t=.3)
 
-    def quit(self):
-        self.tn.write('quit\n')
-        time.sleep(.3)
-        self.tn.write('exit\n')
-
-# tn.close()
