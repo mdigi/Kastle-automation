@@ -13,13 +13,12 @@ from create_krieger import Krieger
 class Krieger_Button(Krieger):
     '''
     Create a Krieger that will be at location 38, 40, or 42 to push button
-    type is 38, 40, or 42
     krieger_wood is the krieger object used to turn the wheel at location 25
     '''
-    def __init__(self, krieger_type, krieger_wood):
-        Krieger.__init__(self, krieger_type)
+    def __init__(self, krieger_wood):
+        Krieger.__init__(self)
         self.krieger_wood = krieger_wood
-        self.go_to_button(self.type)
+        self.go_to_button()
 
     def go_to_button(self, location):
         'Go to button location'
@@ -60,25 +59,23 @@ class Krieger_Button(Krieger):
         # open lab door
         self.command('use card on door', t=1, disp_txt=1)
 
-        if self.type == '38':
-            # go west 5x, north 10x, east 2x, south 2x
-            self.command(list('w'*5 + 'n'*10 + 'eess'), t=.3, disp_txt=1)
+        # go west 5x, north 10x, east 2x, south 2x
+        self.command(list('w'*5 + 'n'*10 + 'eess'), t=.3, disp_txt=1)
 
-            print 'at location 38'
-
-        if self.type == '40':
-            # go west 5x, north 8x, west 2x, south 2x
-            self.command(list('w'*5 + 'n'*8 + 'wwss'), t=.3, disp_txt=1)
-
-            print 'at location 40'
-
-        if self.type == '42':
-            # go west 5x, south 2x, east 2x
-            self.command(list('w'*5 + 'ssee'), t=.3, disp_txt=1)
-
-            print 'at location 42'
+        print 'at location 38'
 
     def push_button(self):
         'Tell Krieger to push the button on the console'
-        self.command('push button', t=.3)
+        self.command('push button', t=1)
+        
+        # go to location 40
+        self.command(list('nnwwsswwss'), t=.3, disp_txt=1)
+        print 'at location 40'
+        self.command('push button', t=1)
+
+        # go to location 42
+        self.command(list('nnee' + 's'*10 + 'ee'), t=.3, disp_txt=1)
+        print 'at location 42'
+        self.command('push button', t=1)
+
 

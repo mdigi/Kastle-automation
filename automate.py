@@ -10,23 +10,15 @@ kwood = Krieger_Wood_Device()
 # create krieger to get all the stuff
 k1 = Krieger_1(kwood)
 
-if 1:
+if 0:
     # create krieger to go to location 38
-    k38 = Krieger_Button(38, kwood)
+    kb = Krieger_Button(kwood)
 
-    # krieger for 40
-    k40 = Krieger_Button(40, kwood)
-
-    # krieger for 42
-    k42 = Krieger_Button(42, kwood)
-
-    k = [k1, k38, k40, k42, kwood]
+    k = [k1, kb, kwood]
 
     k1.command(list('nne'), t=.3, disp_txt=1)
-
-    k38.push_button()
-    k40.push_button()
-    k42.push_button()
+    
+    kb.push_button()
 
     print 'waiting for octopus'
     time.sleep(192)

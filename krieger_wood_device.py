@@ -13,7 +13,7 @@ from create_krieger import Krieger
 class Krieger_Wood_Device(Krieger):
     'Create a Krieger that goes to location 25 on the map and is ready to use device'
     def __init__(self):
-        Krieger.__init__(self, krieger_type='door')
+        Krieger.__init__(self)
         self.go_to_device()
 
     def go_to_device(self):
@@ -32,8 +32,5 @@ class Krieger_Wood_Device(Krieger):
         print 'kriger is at the wooden device, ready to turn the damn wheel'
 
     def open_door(self):
-        if self.type == 'door':
-            'Tell Krieger to use the wooden device and open the cave door'
-            self.command('use device\n', t=.3, disp_txt=1)
-        else:
-            print "I'm not at the wooden device"
+        'Tell Krieger to use the wooden device and open the cave door'
+        self.command('use device\n', t=.3, disp_txt=1)

@@ -11,8 +11,7 @@ from do import do
 
 class Krieger:
     'Create a Krieger'
-    def __init__(self, krieger_type=''):
-        self.type = str(krieger_type)
+    def __init__(self):
         self.tn = telnetlib.Telnet('figgis.agency')
         time.sleep(.5)
 

@@ -15,7 +15,7 @@ class Krieger_1(Krieger):
     Create a Krieger that gets all the items
     '''
     def __init__(self, krieger_wood):
-        Krieger.__init__(self, krieger_type='')
+        Krieger.__init__(self)
         self.krieger_wood = krieger_wood
         self.go()
 
