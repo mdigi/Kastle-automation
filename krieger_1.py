@@ -245,7 +245,7 @@ class Krieger_1(Krieger):
         blow up the rubble
         '''
         self.command(list('wss'), t=1, disp_txt=1)
-        self..command(list('w' + 's'*4 + 'ww') + ['take vinyl record'], t=.3, disp_txt=1)
+        self.command(list('w' + 's'*4 + 'ww') + ['take vinyl record'], t=.3, disp_txt=1)
         
         # go to location 46
         self.command(list('ee' + 'n'*6 + 'wwwwsssswwsswwwwnneennee'), t=.3, disp_txt=1)
