@@ -32,6 +32,6 @@ if 1:
     time.sleep(192)
 
     k1.command(list('wss'), t=1, disp_txt=1)
-    k1.command(list('w' + 's'*4 + 'ww') + ['take album'], t=.3, disp_txt=1)
+    k1.command(list('w' + 's'*4 + 'ww') + ['take vinyl record'], t=.3, disp_txt=1)
     k1.command(list('ee' + 'n'*6 + 'e'), t=.3, disp_txt=1)
 
