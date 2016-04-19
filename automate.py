@@ -10,8 +10,8 @@ kwood = Krieger_Wood_Device()
 # create krieger to get all the stuff
 k1 = Krieger_1(kwood)
 
-if 0:
-    # create krieger to go to location 38
+if 1:
+    # create krieger to push buttons
     kb = Krieger_Button(kwood)
 
     k = [k1, kb, kwood]
@@ -23,7 +23,23 @@ if 0:
     print 'waiting for octopus'
     time.sleep(192)
 
-    k1.command(list('wss'), t=1, disp_txt=1)
-    k1.command(list('w' + 's'*4 + 'ww') + ['take vinyl record'], t=.3, disp_txt=1)
-    k1.command(list('ee' + 'n'*6 + 'e'), t=.3, disp_txt=1)
-
+    # get vinyl record
+    k1.get_record()
+    
+    # tell button krieger to make a bomb & plant it
+    time.sleep(30)
+    kb.bomb()
+    
+    # wait for bomb then go to cave door
+    time.sleep(4)
+    k1.command(list('nnnneenneenneesseessee'), t=.3)
+    
+    # go through door and go to location 17
+    kwood.open_door()
+    time.sleep(3)
+    
+    k1.command(list('n'*8 + 'wwnnwwsswwsswwnnwwssww' + 's'*8 + 'wwsswws'), t=.3, 
+               disp_txt=1)
+               
+    k1.command('use record on shelf', t=2, disp_txt=1)
+    k1.command('s')

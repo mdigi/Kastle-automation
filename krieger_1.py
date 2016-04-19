@@ -109,12 +109,13 @@ class Krieger_1(Krieger):
 
         # go south, west 2x, north 2x, west 2x, north 2x, west 2x, south 2x, west 2x,
         # south 2x, west 2x, south to location 43 & get keycard
+        #self.command(list('swwn'), t=5, disp_txt=1) # fight barry
         self.command(list('swwnnwwnnwwsswwsswws'), t=.3)
         self.command(['take card'], t=.3, disp_txt=1)
 
         # go north, east 2x, north 2x, east 2x, north 2x, east 2x, south 2x, east 2x,
         # south 2x, east 2x to door under 26
-        self.command(list('neenneenneesseessee'), disp_txt=1)
+        self.command(list('neenneenneesseessee'), t=.3, disp_txt=1)
 
         # leave cave, don't need to ask other krieger to open door as commands
         # should be fast enough that the door should still be open
@@ -185,6 +186,7 @@ class Krieger_1(Krieger):
 
         # go south, west 2x, north 2x, west 2x, north 2x, west 2x, south 2x, west 2x,
         # south 2x, west 2x, south to location 43 & make dry ice bomb
+        #self.command(list('swwn'), t=5, disp_txt=1) # fight barry
         self.command(list('swwnnwwnnwwsswwsswws') + ['use dry ice on beer bottle'], t=.3)
 
         # plant the bomb
@@ -236,4 +238,16 @@ class Krieger_1(Krieger):
 
         print self.tn.read_very_eager()
         print 'near robot'
+        
+    def get_record(self):
+        '''
+        get the missing record and go to location 46 and wait for a krieger to
+        blow up the rubble
+        '''
+        self.command(list('wss'), t=1, disp_txt=1)
+        self..command(list('w' + 's'*4 + 'ww') + ['take vinyl record'], t=.3, disp_txt=1)
+        
+        # go to location 46
+        self.command(list('ee' + 'n'*6 + 'wwwwsssswwsswwwwnneennee'), t=.3, disp_txt=1)
+        print 'at location 46'            
 
